@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quote</title>
+<style>
+  :root{
+    --ink:#16181C;
+    --muted:#5C6066;
+    --faint:#9DA1A8;
+    --slate:#2D5A8C;
+    --line:rgba(22,24,28,0.12);
+    --font: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+            Helvetica, "Apple Color Emoji", Arial, sans-serif,
+            "Segoe UI Emoji", "Segoe UI Symbol";
+    --serif: Lyon-Text, Georgia, ui-serif, serif;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ background:transparent; }
+  body{
+    font-family:var(--font);
+    display:flex;
+    justify-content:center;
+    padding:0;
+  }
+  .widget{
+    background:#FFFFFF;
+    border:0.5px solid var(--line);
+    border-radius:8px;
+    padding:22px 26px;
+    width:100%;
+  }
+  .quote{
+    font-family:var(--serif);
+    font-size:18px;
+    line-height:1.5;
+    color:var(--ink);
+    font-style:italic;
+  }
+  .author{
+    margin-top:12px;
+    font-size:12px;
+    color:var(--faint);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+  }
+  .author::before{
+    content:"";
+    display:inline-block;
+    width:18px;
+    height:1px;
+    background:var(--slate);
+    vertical-align:middle;
+    margin-right:8px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --ink:#ECEDEE; --muted:#A3A7AD; --faint:#6B6F76; --slate:#7FA8D4; --line:rgba(255,255,255,0.14); }
+    .widget{ background:#1F2023; }
+  }
+</style>
+</head>
+<body>
+  <div class="widget">
+    <div class="quote" id="quote">—</div>
+    <div class="author" id="author"></div>
+  </div>
+
+<script>
+(function(){
+  var quotes = [
+    { t: "The unexamined life is not worth living.", a: "Socrates" },
+    { t: "We are what we repeatedly do. Excellence, then, is not an act, but a habit.", a: "Aristotle" },
+    { t: "He who has a why to live can bear almost any how.", a: "Friedrich Nietzsche" },
+    { t: "The limits of my language mean the limits of my world.", a: "Ludwig Wittgenstein" },
+    { t: "One must imagine Sisyphus happy.", a: "Albert Camus" },
+    { t: "Everything that is, is in some way a likeness of the source.", a: "Plotinus" },
+    { t: "The mind is furnished with ideas by experience alone.", a: "John Locke" },
+    { t: "What we cannot speak about we must pass over in silence.", a: "Ludwig Wittgenstein" },
+    { t: "Man is condemned to be free.", a: "Jean-Paul Sartre" },
+    { t: "Beauty will save the world.", a: "Fyodor Dostoevsky" },
+    { t: "The most beautiful thing we can experience is the mysterious.", a: "Albert Einstein" },
+    { t: "Time is the moving image of eternity.", a: "Plato" },
+    { t: "To live is the rarest thing in the world. Most people exist, that is all.", a: "Oscar Wilde" },
+    { t: "We live as we dream — alone.", a: "Joseph Conrad" },
+    { t: "There is no greatness where there is not simplicity, goodness and truth.", a: "Leo Tolstoy" },
+    { t: "The soul becomes dyed with the colour of its thoughts.", a: "Marcus Aurelius" },
+    { t: "What is rational is actual, and what is actual is rational.", a: "G. W. F. Hegel" },
+    { t: "A thing of beauty is a joy for ever.", a: "John Keats" },
+    { t: "We must cultivate our garden.", a: "Voltaire" },
+    { t: "The owl of Minerva spreads its wings only with the falling of the dusk.", a: "G. W. F. Hegel" }
+  ];
+  var q = quotes[Math.floor(Math.random() * quotes.length)];
+  document.getElementById("quote").textContent = "\u201C" + q.t + "\u201D";
+  document.getElementById("author").textContent = q.a;
+})();
+</script>
+</body>
+</html>
