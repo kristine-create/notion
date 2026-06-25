@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greeting</title>
+<style>
+  :root{
+    --ink:#16181C;
+    --muted:#5C6066;
+    --faint:#9DA1A8;
+    --slate:#2D5A8C;
+    --line:rgba(22,24,28,0.12);
+    --font: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+            Helvetica, "Apple Color Emoji", Arial, sans-serif,
+            "Segoe UI Emoji", "Segoe UI Symbol";
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ background:transparent; }
+  body{
+    font-family:var(--font);
+    display:flex;
+    justify-content:center;
+    padding:8px;
+  }
+  .widget{
+    background:#FFFFFF;
+    border:0.5px solid var(--line);
+    border-radius:8px;
+    padding:22px 26px;
+    width:100%;
+    max-width:460px;
+  }
+  .greet{
+    font-size:26px;
+    font-weight:500;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+  .date{
+    margin-top:6px;
+    font-size:13px;
+    color:var(--muted);
+    font-family:var(--mono);
+  }
+  .clockrow{
+    margin-top:14px;
+    display:flex;
+    align-items:baseline;
+    gap:6px;
+    font-family:var(--mono);
+  }
+  .clock{
+    font-size:22px;
+    font-weight:500;
+    color:var(--slate);
+    letter-spacing:0.02em;
+  }
+  .ampm{
+    font-size:12px;
+    color:var(--faint);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --ink:#ECEDEE; --muted:#A3A7AD; --faint:#6B6F76; --slate:#7FA8D4; --line:rgba(255,255,255,0.14); }
+    .widget{ background:#1F2023; }
+  }
+</style>
+</head>
+<body>
+  <div class="widget">
+    <div class="greet" id="greet">Good morning, Kri</div>
+    <div class="date" id="date">—</div>
+    <div class="clockrow">
+      <span class="clock" id="clock">--:--:--</span>
+      <span class="ampm" id="ampm"></span>
+    </div>
+  </div>
+ 
+<script>
+(function(){
+  var NAME = "Kristina";
+  function pad(n){ return n < 10 ? "0" + n : "" + n; }
+  function tick(){
+    var now = new Date();
+    var h = now.getHours();
+    var greet;
+    if (h < 12) greet = "Good morning, " + NAME;
+    else if (h < 17) greet = "Good afternoon, " + NAME;
+    else greet = "Good evening, " + NAME;
+ 
+    var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    var months = ["January","February","March","April","May","June","July",
+                  "August","September","October","November","December"];
+    var dateStr = days[now.getDay()] + ", " + now.getDate() + " " +
+                  months[now.getMonth()] + " " + now.getFullYear();
+ 
+    var h12 = h % 12; if (h12 === 0) h12 = 12;
+    var clock = pad(h12) + ":" + pad(now.getMinutes()) + ":" + pad(now.getSeconds());
+    var ampm = h >= 12 ? "pm" : "am";
+ 
+    document.getElementById("greet").textContent = greet;
+    document.getElementById("date").textContent = dateStr;
+    document.getElementById("clock").textContent = clock;
+    document.getElementById("ampm").textContent = ampm;
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
+</body>
+</html>
+ 
