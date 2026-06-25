@@ -30,13 +30,17 @@
     border-radius:8px;
     padding:22px 26px;
     width:100%;
+    min-height:118px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
   }
   .quote{
-    font-family:var(--serif);
+    font-family:var(--font);
     font-size:18px;
-    line-height:1.5;
+    line-height:1.45;
+    font-weight:500;
     color:var(--ink);
-    font-style:italic;
   }
   .author{
     margin-top:12px;
@@ -65,7 +69,7 @@
     <div class="quote" id="quote">—</div>
     <div class="author" id="author"></div>
   </div>
-
+ 
 <script>
 (function(){
   var quotes = [
